@@ -70,6 +70,8 @@
           </div>
           <div class="object">
             <h3>Relocation.BenefitReference</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">BenefitID</div>
@@ -81,13 +83,14 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveTypeID</div>
-                <div class="attributeComment">FK: MoveTypeID</div>
+                <div class="attributeComment">FK: MoveTypeID - MoveTypeReference Table.</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.Employee</h3>
-            <div class="comment"><p>The Employee table is used to store information about the Employee involved in the move/relocation.</p>
+            <div class="comment"><p>The Employee table is used to store information about the Employee involved in the move/relocation.
+To facilitate data entry the epmloyee is first looked up in the Personnel Database (If available) and then the Recruitment Database and if not found in either of those DB's the user can enter all the employee data directly into the Relocation Database.</p>
 </div>
             <div class="attributes">
               <div class="attribute">
@@ -146,6 +149,8 @@
           </div>
           <div class="object">
             <h3>Relocation.ExpenseCategoryReference</h3>
+            <div class="comment"><p>Expense Categories are the categories (Food/Drink, Lodging, Travel etc.) for Expense Types.</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">CategoryID</div>
@@ -159,6 +164,8 @@
           </div>
           <div class="object">
             <h3>Relocation.ExpenseTypeReference</h3>
+            <div class="comment"><p>Expense Types are the expenses associated with a Move/Relocation (Hotel, UHaul Rental, Temporary Housing etc.).</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">ExpenseTypeID</div>
@@ -170,12 +177,14 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">CategoryID</div>
-                <div class="attributeComment">Category ID</div>
+                <div class="attributeComment">Category ID - ExpenseCategoryReference Table.</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.MoveExpense</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">MoveExpenseID</div>
@@ -183,11 +192,11 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">ExpenseTypeID</div>
-                <div class="attributeComment">FK: ExpenseType ID</div>
+                <div class="attributeComment">FK: ExpenseType ID -  ExpenseTypereference Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveID</div>
-                <div class="attributeComment">FK: Move ID</div>
+                <div class="attributeComment">FK: Move ID - MoveInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Amount</div>
@@ -201,6 +210,8 @@
           </div>
           <div class="object">
             <h3>Relocation.MoveInfo</h3>
+            <div class="comment"><p>Information about the Move/Relocation.</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">MoveID</div>
@@ -248,28 +259,30 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">EmployeeID</div>
-                <div class="attributeComment">FK: Employee ID</div>
+                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveTypeID</div>
-                <div class="attributeComment">FK: MoveType ID</div>
+                <div class="attributeComment">FK: MoveType ID - MoveTypeReference Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">UhaulID</div>
-                <div class="attributeComment">FK: UHaul ID</div>
+                <div class="attributeComment">FK: UHaul ID - UHaulInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StorageID</div>
-                <div class="attributeComment">FK: Storage ID</div>
+                <div class="attributeComment">FK: Storage ID - StorageInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">TrackingInfoID</div>
-                <div class="attributeComment">FK: TrackingInfo ID</div>
+                <div class="attributeComment">FK: TrackingInfo ID - TrackingInfo Table.</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.MoveStatus</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">MoveStatusID</div>
@@ -277,15 +290,15 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">EmployeeID</div>
-                <div class="attributeComment">FK: Employee ID</div>
+                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveID</div>
-                <div class="attributeComment">FK: Move ID</div>
+                <div class="attributeComment">FK: Move ID - MoveInfo table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StatusID</div>
-                <div class="attributeComment">FK: Status ID</div>
+                <div class="attributeComment">FK: Status ID - StatusReference Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StoreNumber</div>
@@ -323,6 +336,8 @@
           </div>
           <div class="object">
             <h3>Relocation.MoveTypeReference</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">MoveTypeID</div>
@@ -336,6 +351,8 @@
           </div>
           <div class="object">
             <h3>Relocation.MovingBenefit</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">MovingBenefitID</div>
@@ -343,16 +360,18 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveID</div>
-                <div class="attributeComment">FK: Move ID</div>
+                <div class="attributeComment">FK: Move ID - MoveInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">BenefitID</div>
-                <div class="attributeComment">FK: Benefit ID</div>
+                <div class="attributeComment">FK: Benefit ID - BenefitReference Table.</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.SecondaryContact</h3>
+            <div class="comment"><p>Additional Contacts table.</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">SecondaryID</div>
@@ -360,7 +379,7 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">EmployeeID</div>
-                <div class="attributeComment">FK: Employee ID</div>
+                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">FirstName</div>
@@ -390,6 +409,8 @@
           </div>
           <div class="object">
             <h3>Relocation.StatusReference</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">StatusID</div>
@@ -403,6 +424,8 @@
           </div>
           <div class="object">
             <h3>Relocation.StorageInfo</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">StorageID</div>
@@ -410,44 +433,46 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">CompanyName</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Company Name</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">ContactName</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Company Contact Name</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Phone</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Phone</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StreetAddress</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Street Address</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">City</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">City</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">State</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">State</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Zipcode</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Zip</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">DriverName</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Driver Name</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Loader</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Loader</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.TempHousing</h3>
+            <div class="comment"><p>Temporary Housing Information.</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">TempHouseID</div>
@@ -455,36 +480,42 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveID</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">FK: Move ID - MoveInfo table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StreetAddress</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Street Address</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">State</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">State</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Zipcode</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Zip</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">ArrivalDate</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Arrival Date</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">DepartureDate</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Departure Date</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">LocationName</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Location Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">City</div>
+                <div class="attributeComment">City</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.TrackingInfo</h3>
+            <div class="comment"><p>?</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">TrackingInfoID</div>
@@ -492,36 +523,38 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">TrackingID</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">FK: Tracking ID - TrackingInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">TrackingDate</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Tracking Date</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">TrackingTime</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Tracking Time</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">SquareFeet</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Square Feet</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Driver</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Driver</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Crew</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Crew</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Load</div>
-                <div class="attributeComment"></div>
+                <div class="attributeComment">Load</div>
               </div>
             </div>
           </div>
           <div class="object">
             <h3>Relocation.TrackingReference</h3>
+            <div class="comment"><p>Tracking Type</p>
+</div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">TrackingID</div>
@@ -559,11 +592,11 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">UhaulID</div>
-                <div class="attributeComment">UhaulID</div>
+                <div class="attributeComment">FK: UhaulID - UHaulInfo Table.</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">UhaulRentalTypeID</div>
-                <div class="attributeComment">RentalTypeID</div>
+                <div class="attributeComment">FK: RentalTypeID - UHaulRentalTypeReference Table.</div>
               </div>
             </div>
           </div>
@@ -582,7 +615,7 @@
               </div>
               <div class="attribute">
                 <div class="attributeName">MoveTypeID</div>
-                <div class="attributeComment">MoveType foreign key</div>
+                <div class="attributeComment">Should This Field Be Here?</div>
               </div>
             </div>
           </div>
