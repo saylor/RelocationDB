@@ -236,7 +236,7 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
           </div>
           <div class="object">
             <h3>Relocation.MoveInfo</h3>
-            <div class="comment"><p>The MoveInfo table stores the primary information about the Move/Relocation.</p>
+            <div class="comment"><p>The MoveInfo table stores the primary information about the Move/Relocation and where this Move is in the process (when a date field has an entry, that portion of the process is complete).</p>
 </div>
             <div class="attributes">
               <div class="attribute">
@@ -265,23 +265,23 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
               </div>
               <div class="attribute">
                 <div class="attributeName">RequestDate</div>
-                <div class="attributeComment">Request Date</div>
+                <div class="attributeComment">Request Date - Date the initial request was made</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">ArchivedDate</div>
-                <div class="attributeComment">Archived Date</div>
+                <div class="attributeComment">Archived Date - Date the move was archived. Final step after being Canceled or Completed</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">CanceledDate</div>
-                <div class="attributeComment">Canceled Date</div>
+                <div class="attributeComment">Canceled Date - Date the request was canceled</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">ApprovedDate</div>
-                <div class="attributeComment">Approved Date</div>
+                <div class="attributeComment">Approved Date - Date the request was approved</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">CompletedDate</div>
-                <div class="attributeComment">Completed Date</div>
+                <div class="attributeComment">Completed Date - Date the request was completed</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">EmployeeID</div>
