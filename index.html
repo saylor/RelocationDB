@@ -68,27 +68,8 @@
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.BenefitReference</h3>
-            <div class="comment"><p>The BenefitReference table is for benefits outside of truck/trailer rentals and uhaul supplies - things like 60 day storage, 30 day storage, long term hotel rental, etc.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">BenefitID</div>
-                <div class="attributeComment">Auto generated ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Benefit</div>
-                <div class="attributeComment">Benefit description</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">MoveTypeID</div>
-                <div class="attributeComment">FK: MoveTypeID - MoveTypeReference Table.</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
             <h3>Relocation.BenefitTypeReference</h3>
-            <div class="comment"><p>What is the difference in BenefitReference table and BenefitTypeReference table?</p>
+            <div class="comment"><p>The BenefitTypeReference table is for benefits outside of truck/trailer rentals and uhaul supplies - things like 60 day storage, 30 day storage, long term hotel rental, etc.</p>
 </div>
             <div class="attributes">
               <div class="attribute">
@@ -170,6 +151,76 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
               <div class="attribute">
                 <div class="attributeName">LastName</div>
                 <div class="attributeComment">Employee Last Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.EmployeeMoveStatus</h3>
+            <div class="comment"><p>The EmployeeMoveStatus table stores additonal relocation information, like the store/corporate location they are moving to, what department, their title, and notes.</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">MoveStatusID</div>
+                <div class="attributeComment">Auto generated ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">EmployeeID</div>
+                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">MoveID</div>
+                <div class="attributeComment">FK: Move ID - MoveInfo table.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">StatusID</div>
+                <div class="attributeComment">FK: Status ID - StatusReference Table.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">StoreNumber</div>
+                <div class="attributeComment">Store Number</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">Title</div>
+                <div class="attributeComment">Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">StartDate</div>
+                <div class="attributeComment">Start Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">Department</div>
+                <div class="attributeComment">Department</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">OtherDepartment</div>
+                <div class="attributeComment">Other Department</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">StoreOps</div>
+                <div class="attributeComment">Store Ops</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">Location</div>
+                <div class="attributeComment">Location</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">Notes</div>
+                <div class="attributeComment">Notes</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.EmploymentStatusReference</h3>
+            <div class="comment"><p>The EmploymentStatusReference table stores the status of the employee (New Employee or Current Employee) involved in a move/relocation.</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">StatusID</div>
+                <div class="attributeComment">Auto generated ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">StatusType</div>
+                <div class="attributeComment">Status Type</div>
               </div>
             </div>
           </div>
@@ -306,61 +357,6 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.MoveStatus</h3>
-            <div class="comment"><p>The MoveStatus (EmployeeMoveStatus) table stores additonal relocation information, like the store/corporate location they are moving to, what department, their title, and notes.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">MoveStatusID</div>
-                <div class="attributeComment">Auto generated ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">EmployeeID</div>
-                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">MoveID</div>
-                <div class="attributeComment">FK: Move ID - MoveInfo table.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">StatusID</div>
-                <div class="attributeComment">FK: Status ID - StatusReference Table.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">StoreNumber</div>
-                <div class="attributeComment">Store Number</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Title</div>
-                <div class="attributeComment">Title</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">StartDate</div>
-                <div class="attributeComment">Start Date</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Department</div>
-                <div class="attributeComment">Department</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">OtherDepartment</div>
-                <div class="attributeComment">Other Department</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">StoreOps</div>
-                <div class="attributeComment">Store Ops</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Location</div>
-                <div class="attributeComment">Location</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Notes</div>
-                <div class="attributeComment">Notes</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
             <h3>Relocation.MoveTypeReference</h3>
             <div class="comment"><p>The MoveTypeReference table stores the type of move (Full Service or Self Service) for a specific move/relocation.</p>
 </div>
@@ -430,21 +426,6 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
               <div class="attribute">
                 <div class="attributeName">EmailAddress</div>
                 <div class="attributeComment">Email Address</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.StatusReference</h3>
-            <div class="comment"><p>The StatusReference table stores the status of the employee (New Employee or Current Employee) involved in a move/relocation.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">StatusID</div>
-                <div class="attributeComment">Auto generated ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">StatusType</div>
-                <div class="attributeComment">Status Type</div>
               </div>
             </div>
           </div>
@@ -575,6 +556,10 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">Load</div>
                 <div class="attributeComment">Load</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">MoveID</div>
+                <div class="attributeComment">FK: Move ID - Move Info table</div>
               </div>
             </div>
           </div>
@@ -733,8 +718,8 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_BenefitReference_Delete</h3>
-            <div class="comment"><p>SP to delete a specific record from the BenefitReference table.</p>
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Delete</h3>
+            <div class="comment"><p>SP to delete a specific record from the BenefitTypeReference table.</p>
 </div>
             <div class="attributes">
               <div class="attribute">
@@ -744,8 +729,8 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_BenefitReference_Insert</h3>
-            <div class="comment"><p>SP to Insert a record in the BenefitReference table</p>
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Insert</h3>
+            <div class="comment"><p>SP to Insert a record in the BenefitTypeReference table</p>
 </div>
             <div class="attributes">
               <div class="attribute">
@@ -759,25 +744,25 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_BenefitReference_Select_All</h3>
-            <div class="comment"><p>SP to Select All of the rows in the BenefitReference table</p>
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Select_All</h3>
+            <div class="comment"><p>SP to Select All of the rows in the BenefitTypeReference table</p>
 </div>
             <div class="attributes"></div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_BenefitReference_Select_One</h3>
-            <div class="comment"><p>SP to Select One of the rows in the BenefitReference table</p>
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Select_One</h3>
+            <div class="comment"><p>SP to Select One of the rows in the BenefitTypeReference table</p>
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">@benefitId</div>
+                <div class="attributeName">@benefitID</div>
                 <div class="attributeComment">Parameter: Benefit ID</div>
               </div>
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_BenefitReference_Update</h3>
-            <div class="comment"><p>SP to Update the data in a specific row in the BenefitReference table</p>
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Update</h3>
+            <div class="comment"><p>SP to Update the data in a specific row in the BenefitTypeReference table</p>
 </div>
             <div class="attributes">
               <div class="attribute">
