@@ -32,41 +32,10 @@
   <body>
     <h1>Relocation</h1>
     <div class="navBar">Jump to: 
-                <a href="#Table">Table</a> <a href="#StoredProcedure">StoredProcedure</a> </div>
+                <a href="#Table">Table</a> <a href="#StoredProcedure">StoredProcedure</a> </div>
     <div class="groups">
       <div class="group"><a name="Table"></a><h2>Table</h2>
         <div class="objects">
-          <div class="object">
-            <h3>Relocation.Audit</h3>
-            <div class="comment"><p>The Audit table is used to track changes to the data.  When a major change is made in the relocation process, the original data is stored and the changes are stored.  If the data needs to be reverted the OriginalDataJSON can be used to revert the data.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">AuditID</div>
-                <div class="attributeComment">Auto generated ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">MoveID</div>
-                <div class="attributeComment">Foreign Key.  Joins MoveInfo table to identify which Move this Audit record belongs to.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">ChangeDate</div>
-                <div class="attributeComment">Date of the Change.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Pernr</div>
-                <div class="attributeComment">Personnel Number of the Employee involved in the Move.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">OriginalDataJSON</div>
-                <div class="attributeComment">The data before tany Changes were made.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">NewDataJSON</div>
-                <div class="attributeComment">The data after the changes were made.</div>
-              </div>
-            </div>
-          </div>
           <div class="object">
             <h3>Relocation.BenefitTypeReference</h3>
             <div class="comment"><p>The BenefitTypeReference table is for benefits outside of truck/trailer rentals and uhaul supplies - things like 60 day storage, 30 day storage, long term hotel rental, etc.</p>
@@ -160,7 +129,7 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">MoveStatusID</div>
+                <div class="attributeName">EmployeeMoveStatusID</div>
                 <div class="attributeComment">Auto generated ID</div>
               </div>
               <div class="attribute">
@@ -176,11 +145,11 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
                 <div class="attributeComment">FK: Status ID - StatusReference Table.</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">StoreNumber</div>
+                <div class="attributeName">CurrentStoreNumber</div>
                 <div class="attributeComment">Store Number</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">Title</div>
+                <div class="attributeName">CurrentTitle</div>
                 <div class="attributeComment">Title</div>
               </div>
               <div class="attribute">
@@ -192,8 +161,8 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
                 <div class="attributeComment">Department</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">OtherDepartment</div>
-                <div class="attributeComment">Other Department</div>
+                <div class="attributeName">DistrictManager</div>
+                <div class="attributeComment">District Manager</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">StoreOps</div>
@@ -206,6 +175,18 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
               <div class="attribute">
                 <div class="attributeName">Notes</div>
                 <div class="attributeComment">Notes</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">NewTitle</div>
+                <div class="attributeComment">New Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">NewStoreNumber</div>
+                <div class="attributeComment">New Store Number</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">EmployeeType</div>
+                <div class="attributeComment">Employee Type</div>
               </div>
             </div>
           </div>
@@ -280,8 +261,8 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
                 <div class="attributeComment">Amount</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">DocumentFile</div>
-                <div class="attributeComment">Document file name</div>
+                <div class="attributeName">ExpenseDescription</div>
+                <div class="attributeComment">Expense Description</div>
               </div>
             </div>
           </div>
@@ -351,8 +332,31 @@ To facilitate data entry the epmloyee is first looked up in the Personnel Databa
                 <div class="attributeComment">FK: Storage ID - StorageInfo Table.</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">TrackingInfoID</div>
-                <div class="attributeComment">FK: TrackingInfo ID - TrackingInfo Table.</div>
+                <div class="attributeName">SubmitDate</div>
+                <div class="attributeComment">Submitt Date - Date the request was submitted.</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.MoveNotes</h3>
+            <div class="comment"><p>The MoveNotes table stores a series of notes for a specific move/relocation.</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">NoteID</div>
+                <div class="attributeComment">Auto generated ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">MoveID</div>
+                <div class="attributeComment">FK: Move ID - MoveInfo Table.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">EmployeeID</div>
+                <div class="attributeComment">FK: Employee ID - Employee Table.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">Note</div>
+                <div class="attributeComment">Notes</div>
               </div>
             </div>
           </div>
@@ -538,12 +542,12 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Tracking Date</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">TrackingTime</div>
-                <div class="attributeComment">Tracking Time</div>
-              </div>
-              <div class="attribute">
                 <div class="attributeName">SquareFeet</div>
                 <div class="attributeComment">Square Feet - helps Uhaul determine what type of moving vehicle is needed, also helps estimate costs.</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">TrackingTime</div>
+                <div class="attributeComment">Tracking Time</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">Driver</div>
@@ -576,6 +580,10 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeName">TrackingType</div>
                 <div class="attributeComment">Tracking Type</div>
               </div>
+              <div class="attribute">
+                <div class="attributeName">MoveTypeID</div>
+                <div class="attributeComment">FK: Move ID - MoveTypeReference Table.</div>
+              </div>
             </div>
           </div>
           <div class="object">
@@ -588,46 +596,8 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Auto generated ID, Foreign Key in the MoveInfo table.</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">ReservationNumber</div>
-                <div class="attributeComment">UHaul rental agreement Reservation Number</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.UhaulRental</h3>
-            <div class="comment"><p>The UHaulRental table connects the UHaulInfo table with the UHaulRentalTypeReference.  One Move may have multiple Rental Agreements (UHaulInfo) and each agreement may contain several different types of rentals  (Trailer, Moving Van, Pickup etc.)</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">UhaulRentalID</div>
-                <div class="attributeComment">RentalID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">UhaulID</div>
-                <div class="attributeComment">FK: UhaulID - UHaulInfo Table.</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">UhaulRentalTypeID</div>
-                <div class="attributeComment">FK: RentalTypeID - UHaulRentalTypeReference Table.</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.UhaulRentalTypeReference</h3>
-            <div class="comment"><p>The UHaulRentalTypeReference table stores the Type of UHaull rental.  There may be several types associated with a particular Move.  A move may require a 24' Moving Van, a Trailer and a Tow Dolly.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">UhaulRentalTypeID</div>
-                <div class="attributeComment">Auto genetated ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">Type</div>
-                <div class="attributeComment">Type of Rental (Trailer, Moving Van, Pickup etc.)</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">MoveTypeID</div>
-                <div class="attributeComment">Should This Field Be Here?</div>
+                <div class="attributeName">ConfirmationNumber</div>
+                <div class="attributeComment">UHaul rental agreement Confirmation Number</div>
               </div>
             </div>
           </div>
@@ -635,88 +605,6 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
       </div>
       <div class="group"><a name="StoredProcedure"></a><h2>StoredProcedure</h2>
         <div class="objects">
-          <div class="object">
-            <h3>Relocation.usp_Relocation_Audit_Delete</h3>
-            <div class="comment"><p>SP to delete a specific record from the Audit table.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@auditId</div>
-                <div class="attributeComment">Parameter: ID of record to Delete.</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_Audit_Insert</h3>
-            <div class="comment"><p>SP to Insert a record in the Audit table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@timestamp</div>
-                <div class="attributeComment">Parameter: Current data time</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@pernr</div>
-                <div class="attributeComment">Parameter: Personnel Number</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@moveId</div>
-                <div class="attributeComment">Parameter: ID of the current move</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@originalJSON</div>
-                <div class="attributeComment">Parameter: Original data in JSON format</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@newJSON</div>
-                <div class="attributeComment">Parameter: New data in JSON format</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_Audit_Select_All</h3>
-            <div class="comment"><p>SP to Select All of the rows in the Audit table</p>
-</div>
-            <div class="attributes"></div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_Audit_Select_One</h3>
-            <div class="comment"><p>SP to Select One of the rows in the Audit table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@auditId</div>
-                <div class="attributeComment">Parameter: Audit ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_Audit_Update</h3>
-            <div class="comment"><p>SP to Update the data in a specific row in the Audit table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@auditId</div>
-                <div class="attributeComment">Parameter: Audit ID - use for identification only</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@timestamp</div>
-                <div class="attributeComment">Parameter: Time Stamp</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@pernr</div>
-                <div class="attributeComment">Parameter: Personnel Number</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@originalDataJSON</div>
-                <div class="attributeComment">Parameter: Original Data in JSON format</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@newDataJSON</div>
-                <div class="attributeComment">Parameter: New Data in JSON Format</div>
-              </div>
-            </div>
-          </div>
           <div class="object">
             <h3>Relocation.usp_Relocation_BenefitTypeReference_Delete</h3>
             <div class="comment"><p>SP to delete a specific record from the BenefitTypeReference table.</p>
@@ -750,6 +638,12 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="attributes"></div>
           </div>
           <div class="object">
+            <h3>Relocation.usp_Relocation_BenefitTypeReference_Select_All_FullService</h3>
+            <div class="comment"><p>Select All Full Service Benefits. Benefits for Self Service are handeled at the UHaul Site, only MoveType 1 (Full Service) are valid</p>
+</div>
+            <div class="attributes"></div>
+          </div>
+          <div class="object">
             <h3>Relocation.usp_Relocation_BenefitTypeReference_Select_One</h3>
             <div class="comment"><p>SP to Select One of the rows in the BenefitTypeReference table</p>
 </div>
@@ -773,6 +667,37 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeName">@benefit</div>
                 <div class="attributeComment">Parameter: Benefit</div>
               </div>
+              <div class="attribute">
+                <div class="attributeName">@moveTypeId</div>
+                <div class="attributeComment">Parameter: Move Type ID = 1</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Count_Requests_By_Status</h3>
+            <div class="comment"><p>Select Relocation Moves by status.
+Statuses: STARTED, SUBMITTED, APPROVED, COMPLETED, CANCELED or ARCHIVED</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@status</div>
+                <div class="attributeComment">One of the 6 statuses.</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Employee_Check</h3>
+            <div class="comment"><p>SP to select one from Employee table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@recruitmentID</div>
+                <div class="attributeComment">Parameter: RecruitmentID of record to select</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@pernr</div>
+                <div class="attributeComment">Parameter: perner of record to select</div>
+              </div>
             </div>
           </div>
           <div class="object">
@@ -791,6 +716,10 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="comment"><p>SP to Insert a record in the Employee table</p>
 </div>
             <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@recruitmentID</div>
+                <div class="attributeComment">Parameter: Recruitment ID</div>
+              </div>
               <div class="attribute">
                 <div class="attributeName">@pernr</div>
                 <div class="attributeComment">Parameter: Personnel Number</div>
@@ -846,6 +775,17 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="comment"><p>SP to Select All of the rows in the Employee table</p>
 </div>
             <div class="attributes"></div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Employee_Select_Contacts</h3>
+            <div class="comment"><p>SP to Select Secondary Contacts for an Employee</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: EmployeeID</div>
+              </div>
+            </div>
           </div>
           <div class="object">
             <h3>Relocation.usp_Relocation_Employee_Select_One</h3>
@@ -906,6 +846,258 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">@zipcode</div>
                 <div class="attributeComment">Parameter:  Zip</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@firstName</div>
+                <div class="attributeComment">Parameter:  FIrst Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@lastName</div>
+                <div class="attributeComment">Parameter:  Last Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeList_Select_All</h3>
+            <div class="comment"><p>Select All Relocation Employees and determine status</p>
+</div>
+            <div class="attributes"></div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Append_Note</h3>
+            <div class="comment"><p>Append EmployeeMoveStatus Notes (with username and date) to a record that already exists</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@empMoveStatusId</div>
+                <div class="attributeComment">Parameter: Employee Move Status ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@usrname</div>
+                <div class="attributeComment">Parameter: User Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@note</div>
+                <div class="attributeComment">Parameter: New Note</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Delete</h3>
+            <div class="comment"><p>SP to Delete from EmployeeMoveStatus Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeMoveStatusId</div>
+                <div class="attributeComment">Parameter: Employee Move Status ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Insert</h3>
+            <div class="comment"><p>SP to Insert to Employee MoveStatus Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Emplayee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@statusId</div>
+                <div class="attributeComment">Parameter: Status ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@currentStoreNumber</div>
+                <div class="attributeComment">Parameter: Current Store Numbert</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@currentTitle</div>
+                <div class="attributeComment">Parameter: Current Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@startDate</div>
+                <div class="attributeComment">Parameter: Start Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@department</div>
+                <div class="attributeComment">Parameter: Department</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@districtManager</div>
+                <div class="attributeComment">Parameter: District Manager</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@storeOps</div>
+                <div class="attributeComment">Parameter: Store Ops</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@location</div>
+                <div class="attributeComment">Parameter: Location</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@notes</div>
+                <div class="attributeComment">Parameter: Notes</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@newTitle</div>
+                <div class="attributeComment">Parameter: New Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@newStoreNumber</div>
+                <div class="attributeComment">Parameter: New Store Number</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Select_All</h3>
+            <div class="comment"><p>SP to Select All from EmployeeMoveStatus Table</p>
+</div>
+            <div class="attributes"></div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Select_One</h3>
+            <div class="comment"><p>SP to Select One from MoveStatus Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeMoveStatusId</div>
+                <div class="attributeComment">Parameter: Employee Move Status ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Select_One_byMoveId</h3>
+            <div class="comment"><p>SP to Select One from EmployeeMoveStatus Table by MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Update</h3>
+            <div class="comment"><p>Sp to Update MoveStatus Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeMoveStatusID</div>
+                <div class="attributeComment">Parameter: Employee Move Status ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@currentStoreNumber</div>
+                <div class="attributeComment">Parameter: Current Store Number</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@currentTitle</div>
+                <div class="attributeComment">Parameter: Current Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@startDate</div>
+                <div class="attributeComment">Parameter: Start Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@department</div>
+                <div class="attributeComment">Parameter: Department</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@districtManager</div>
+                <div class="attributeComment">Parameter: District Manager</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@storeOps</div>
+                <div class="attributeComment">Parameter: Store Ops</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@location</div>
+                <div class="attributeComment">Parameter: location</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@notes</div>
+                <div class="attributeComment">Parameter: Notes</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@newStoreNumber</div>
+                <div class="attributeComment">Parameter: New Store Number</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@newTitle</div>
+                <div class="attributeComment">Parameter: New Title</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@statusID</div>
+                <div class="attributeComment">Parameter: Status ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeType</div>
+                <div class="attributeComment">Parameter: Employee Type</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmployeeMoveStatus_Update_Notes</h3>
+            <div class="comment"><p>SP to Edit existing EmployeeMoveStatus Notes (NOT adding a new note)</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveStatusId</div>
+                <div class="attributeComment">Parameter: Move Status ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@note</div>
+                <div class="attributeComment">Parameter: Note</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmploymentStatusReference_Delete</h3>
+            <div class="comment"><p>SP to Delete from StatusReference Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@statusId</div>
+                <div class="attributeComment">Parameter: Status ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmploymentStatusReference_Insert</h3>
+            <div class="comment"><p>SP to Insert to StatusReference Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@statusType</div>
+                <div class="attributeComment">Parameter: Status Type</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmploymentStatusReference_Select_All</h3>
+            <div class="comment"><p>SP to Select All from StatusReference Table</p>
+</div>
+            <div class="attributes"></div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_EmploymentStatusReference_Select_One</h3>
+            <div class="comment"><p>SP to Select One from StatusReference Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@statusId</div>
+                <div class="attributeComment">Parameter: Status ID</div>
               </div>
             </div>
           </div>
@@ -1026,6 +1218,51 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
+            <h3>Relocation.usp_Relocation_Get_FullSelf_Service_Edit</h3>
+            <div class="comment"><p>SP to determine if this is an existing move (Edit - 1) or an new move (Create - 0)
+Return Val:   0 = No, 1 = Yes</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Get_Move_Stage</h3>
+            <div class="comment"><p>SP to Determine which stage a move is at.
+Return Val:<br
+0   = New Move (Move not started)
+1   = Move at Stage 1 (No Move Type Selected)
+21 = Move At Stage 2, Move Type: Full Service
+22 = Move At Stage 2, Move Type: Self Service</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Get_Move_Stage_by_empId</h3>
+            <div class="comment"><p>SP to Determine which stage a move is at by Employee ID
+Return Val:<br
+  -1  = Unable to process: More than 1 MoveID for this Employee
+   0  = New Move (Move not started)
+   1  = Move at Stage 1 (No Move Type Selected)
+ 21  = Move At Stage 2, Move Type: Full Service
+--     22 = Move At Stage 2, Move Type: Self Service</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@empId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
             <h3>Relocation.usp_Relocation_Get_Recruitment_Employee</h3>
             <div class="comment"><p>SP to Select a specific employee from the Employee table</p>
 </div>
@@ -1037,6 +1274,33 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">@lastName</div>
                 <div class="attributeComment">Parameter: Last Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Get_Request_Status</h3>
+            <div class="comment"><p>SP to Get Request Status</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Get_Requests_By_Status</h3>
+            <div class="comment"><p>SP to Select Relocation Users by status
+Status: STARTED, SUBMITTED, APPROVED, COMPLETED, CANCELED, ARCHIVED</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@status</div>
+                <div class="attributeComment">parameter: Status</div>
               </div>
             </div>
           </div>
@@ -1057,12 +1321,24 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">@amount</div>
-                <div class="attributeComment">Parameter: Expense Amount</div>
+                <div class="attributeName">@expenseTypeId</div>
+                <div class="attributeComment">Parameter:  Expense Type ID</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@documentFile</div>
                 <div class="attributeComment">Parameter: Link to uploaded document</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@amount</div>
+                <div class="attributeComment">Parameter: Expense Amount</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@expenseDescription</div>
+                <div class="attributeComment">Parameter: Expense Description</div>
               </div>
             </div>
           </div>
@@ -1070,7 +1346,12 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <h3>Relocation.usp_Relocation_MoveExpense_Select_All</h3>
             <div class="comment"><p>SP to Select All of the rows in the MoveExpense table</p>
 </div>
-            <div class="attributes"></div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
           </div>
           <div class="object">
             <h3>Relocation.usp_Relocation_MoveExpense_Select_One</h3>
@@ -1093,12 +1374,39 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: Move Expense ID</div>
               </div>
               <div class="attribute">
+                <div class="attributeName">@expenseTypeId</div>
+                <div class="attributeComment">Parameter: Expense Type ID</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@amount</div>
                 <div class="attributeComment">Parameter: Amount</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@documentFile</div>
                 <div class="attributeComment">Parameter: Document File</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@ExpenseDescription</div>
+                <div class="attributeComment">Parameter: Expense Description</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveInfo_Append_Note</h3>
+            <div class="comment"><p>SP to Update MoveInfo Notes to a record that already exists</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@usrname</div>
+                <div class="attributeComment">Parameter: User Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@note</div>
+                <div class="attributeComment">Parameter: New Note</div>
               </div>
             </div>
           </div>
@@ -1119,6 +1427,10 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
+                <div class="attributeName">@EmployeeID</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@streetAddress</div>
                 <div class="attributeComment">Parameter: Address</div>
               </div>
@@ -1131,12 +1443,16 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: State</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@zipcode</div>
-                <div class="attributeComment">Parameter: Zip</div>
-              </div>
-              <div class="attribute">
                 <div class="attributeName">@notes</div>
                 <div class="attributeComment">Parameter: Additional notes about this move</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@zipcode</div>
+                <div class="attributeComment">Parameter: Zip Code</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@submitDate</div>
+                <div class="attributeComment">Parameter: Date Move Submitted</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@requestDate</div>
@@ -1173,6 +1489,32 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveInfo_Select_One_byEmployee</h3>
+            <div class="comment"><p>SP to Select One MoveInfo Record By Employee ID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveInfo_Select_One_byEmployeeId</h3>
+            <div class="comment"><p>SP to Select One from MoveInfo Table by EmployeeID and MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveID</div>
                 <div class="attributeComment">Parameter: Move ID</div>
               </div>
             </div>
@@ -1225,6 +1567,127 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">@completedDate</div>
                 <div class="attributeComment">Parameter: Complete Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeID</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@submitDate</div>
+                <div class="attributeComment">Parameter: Submitt Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveTypeID</div>
+                <div class="attributeComment">Parameter: Move Type ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveInfo_Update_StorageID</h3>
+            <div class="comment"><p>SP to Update the StorageID in the MoveInfo table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@storageId</div>
+                <div class="attributeComment">Parameter: Storage ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveInfo_Update_UHaulInfoID</h3>
+            <div class="comment"><p>SP to Update the UhaulInfoID in the MoveInfo table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@uhaulId</div>
+                <div class="attributeComment">Parameter: UHaul ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveNotes_Append_Note</h3>
+            <div class="comment"><p>SP to Insert Note into the MoveNotes table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@usrname</div>
+                <div class="attributeComment">Parameter: User Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@note</div>
+                <div class="attributeComment">Parameter: New Note</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveNotes_Select_All_byMoveId</h3>
+            <div class="comment"><p>SP to Select ALL from MoveNotes Table by EmployeeID and MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveNotes_Select_First</h3>
+            <div class="comment"><p>SP to Select First MoveNote by EmployeeID and MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveNotes_Select_One</h3>
+            <div class="comment"><p>SP to Select ONE from MoveNotes Table by NoteID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@noteId</div>
+                <div class="attributeComment">Parameter: Note ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MoveNotes_Update_Note</h3>
+            <div class="comment"><p>SP to Update MoveNotes.Note by NoteID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@noteId</div>
+                <div class="attributeComment">Parameter: Note ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@note</div>
+                <div class="attributeComment">Parameter: Note</div>
               </div>
             </div>
           </div>
@@ -1418,8 +1881,19 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">@moveingBenefitId</div>
+                <div class="attributeName">@movingBenefitId</div>
                 <div class="attributeComment">Parameter: ID of record to delete</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MovingBenefit_DeleteAll_byMoveId</h3>
+            <div class="comment"><p>SP to Delete from MovingBenefit Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
               </div>
             </div>
           </div>
@@ -1443,6 +1917,17 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="comment"><p>SP to Select All of the rows in the MovingBenefit table</p>
 </div>
             <div class="attributes"></div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_MovingBenefit_Select_All_ByMoveId</h3>
+            <div class="comment"><p>SP to Select All from MovingBenefit Table By MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
           </div>
           <div class="object">
             <h3>Relocation.usp_Relocation_MovingBenefit_Select_One</h3>
@@ -1491,6 +1976,10 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@firstName</div>
                 <div class="attributeComment">Parameter: First Name</div>
               </div>
@@ -1520,7 +2009,23 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <h3>Relocation.usp_Relocation_SecondaryContact_Select_All</h3>
             <div class="comment"><p>SP to Select All of the rows in the SecondaryContact table</p>
 </div>
-            <div class="attributes"></div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_SecondaryContact_Select_Last</h3>
+            <div class="comment"><p>SP to Select Last Entered from SecondaryContact Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
           </div>
           <div class="object">
             <h3>Relocation.usp_Relocation_SecondaryContact_Select_One</h3>
@@ -1565,6 +2070,37 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">@emailAddress</div>
                 <div class="attributeComment">Parameter: Email Address</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_Select_Users_By_Status</h3>
+            <div class="comment"><p>SP to Select Relocation Users by status
+Status: STARTED, SUBMITTED, APPROVED, COMPLETED, CANCELED, ARCHIVED</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@status</div>
+                <div class="attributeComment">Parameter: Status</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_ServiceRequest_Select_Data</h3>
+            <div class="comment"><p>SP to Select Data for Move Request (just before entering Service Request information)</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@employeeId</div>
+                <div class="attributeComment">Parameter: Employee ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
               </div>
             </div>
           </div>
@@ -1741,6 +2277,53 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
+            <h3>Relocation.usp_Relocation_StorageInfo_Upsert</h3>
+            <div class="comment"><p>SP to Update/Insert StorageInfo</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@storageId</div>
+                <div class="attributeComment">Parameter: Storage ID  - Optional (if present update record, else add new record)</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@companyName</div>
+                <div class="attributeComment">Parameter: Company Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@contactName</div>
+                <div class="attributeComment">Parameter: Contact Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@phone</div>
+                <div class="attributeComment">Parameter: Phone</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@streetAddress</div>
+                <div class="attributeComment">Parameter: Street Address</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@city</div>
+                <div class="attributeComment">Parameter: City</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@state</div>
+                <div class="attributeComment">Parameter: State</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@zipcode</div>
+                <div class="attributeComment">Parameter: Zip Code</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@driverName</div>
+                <div class="attributeComment">Parameter: Driver Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@loader</div>
+                <div class="attributeComment">Parameter: Loader (True or False)</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
             <h3>Relocation.usp_Relocation_TempHousing_Delete</h3>
             <div class="comment"><p>SP to delete a specific record from the TempHousing table.</p>
 </div>
@@ -1757,8 +2340,16 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@streetAddress</div>
                 <div class="attributeComment">Parameter: Street Address</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@city</div>
+                <div class="attributeComment">Parameter: City</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@state</div>
@@ -1800,6 +2391,17 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             </div>
           </div>
           <div class="object">
+            <h3>Relocation.usp_Relocation_TempHousing_Select_One_byMoveID</h3>
+            <div class="comment"><p>SP to Select One from TempHousing Table By MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
             <h3>Relocation.usp_Relocation_TempHousing_Update</h3>
             <div class="comment"><p>SP to Insert a record in the TempHousing table</p>
 </div>
@@ -1813,12 +2415,59 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: Street Address</div>
               </div>
               <div class="attribute">
+                <div class="attributeName">@city</div>
+                <div class="attributeComment">Parameter: City</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@state</div>
                 <div class="attributeComment">Parameter: State</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@zipcode</div>
                 <div class="attributeComment">Parameter: Zip</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@arrivalDate</div>
+                <div class="attributeComment">Parameter: Arrival Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@departureDate</div>
+                <div class="attributeComment">Parameter: Departure Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@locationName</div>
+                <div class="attributeComment">Parameter: Location Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_TempHousing_Upsert</h3>
+            <div class="comment"><p>SP to Update/Insert TempHousing Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID  - Optional (if present update record, else add new record)</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@tempHouseId</div>
+                <div class="attributeComment">Parameter: Temp House ID - Optional if Insert</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@streetAddress</div>
+                <div class="attributeComment">Parameter: Street Address</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@city</div>
+                <div class="attributeComment">Parameter: City</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@state</div>
+                <div class="attributeComment">Parameter: State</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@zipcode</div>
+                <div class="attributeComment">Parameter: Zip Code</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@arrivalDate</div>
@@ -1851,20 +2500,16 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">@trackingInfoId</div>
-                <div class="attributeComment">Parameter: Tracking Info ID</div>
-              </div>
-              <div class="attribute">
                 <div class="attributeName">@trackingId</div>
                 <div class="attributeComment">Parameter: Tracking ID</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@trackingDate</div>
-                <div class="attributeComment">Parameter: Tracking Date</div>
+                <div class="attributeName">@trackingInfoId</div>
+                <div class="attributeComment">Parameter: Tracking Info ID</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@trackingTime</div>
-                <div class="attributeComment">Parameter: Tracking Time</div>
+                <div class="attributeName">@trackingDate</div>
+                <div class="attributeComment">Parameter: Tracking Date</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@squareFeet</div>
@@ -1875,12 +2520,20 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: Driver</div>
               </div>
               <div class="attribute">
+                <div class="attributeName">@trackingTime</div>
+                <div class="attributeComment">Parameter: Tracking Time</div>
+              </div>
+              <div class="attribute">
                 <div class="attributeName">@crew</div>
                 <div class="attributeComment">Parameter: Crew</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@load</div>
                 <div class="attributeComment">Parameter: Load</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
               </div>
             </div>
           </div>
@@ -1891,13 +2544,39 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
             <div class="attributes"></div>
           </div>
           <div class="object">
+            <h3>Relocation.usp_Relocation_TrackingInfo_Select_All_byMoveID</h3>
+            <div class="comment"><p>SP to Select ALL TrackingInfo by MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
             <h3>Relocation.usp_Relocation_TrackingInfo_Select_One</h3>
             <div class="comment"><p>SP to Select One of the rows in the TrackingInfo table</p>
 </div>
             <div class="attributes">
               <div class="attribute">
                 <div class="attributeName">@trackingInfoId</div>
-                <div class="attributeComment">Parameter: tracking Info ID</div>
+                <div class="attributeComment">Parameter: Tracking Info ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_TrackingInfo_Select_One_ByMoveId</h3>
+            <div class="comment"><p>SP to Select One from TrackingInfo Table by MoveID</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@trackingId</div>
+                <div class="attributeComment">Parameter: Tracking ID</div>
               </div>
             </div>
           </div>
@@ -1919,12 +2598,12 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: Tracking Date</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@trackingTime</div>
-                <div class="attributeComment">Parameter: Tracking Time</div>
-              </div>
-              <div class="attribute">
                 <div class="attributeName">@squareFeet</div>
                 <div class="attributeComment">Parameter: Square Feet</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@trackingTime</div>
+                <div class="attributeComment">Parameter: Tracking Time</div>
               </div>
               <div class="attribute">
                 <div class="attributeName">@driver</div>
@@ -1937,6 +2616,45 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
               <div class="attribute">
                 <div class="attributeName">@load</div>
                 <div class="attributeComment">Parameter: Load</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
+              </div>
+            </div>
+          </div>
+          <div class="object">
+            <h3>Relocation.usp_Relocation_TrackingInfo_Upsert</h3>
+            <div class="comment"><p>SP to Update/Insert TempHousing Table</p>
+</div>
+            <div class="attributes">
+              <div class="attribute">
+                <div class="attributeName">@trackingId</div>
+                <div class="attributeComment">Parameter:  Tracking ID - Optional (if present update record, else add new record)</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@trackingDate</div>
+                <div class="attributeComment">Parameter: Tracking Date</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@squareFeet</div>
+                <div class="attributeComment">Parameter: House Square Feet</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@driver</div>
+                <div class="attributeComment">Parameter: Driver Name</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@crew</div>
+                <div class="attributeComment">Parameter: Crew Names</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@load</div>
+                <div class="attributeComment">Parameter: Load - True or False</div>
+              </div>
+              <div class="attribute">
+                <div class="attributeName">@moveId</div>
+                <div class="attributeComment">Parameter: Move ID</div>
               </div>
             </div>
           </div>
@@ -2011,8 +2729,8 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
 </div>
             <div class="attributes">
               <div class="attribute">
-                <div class="attributeName">@reservationNumber</div>
-                <div class="attributeComment">Parameter: Reservation Number</div>
+                <div class="attributeName">@confirmationNumber</div>
+                <div class="attributeComment">Parameter: Confirmation Number</div>
               </div>
             </div>
           </div>
@@ -2043,140 +2761,23 @@ Tracking Info stores a separate record for pickup and delivery, with TrackingRef
                 <div class="attributeComment">Parameter: UHaul ID</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@reservationNumber</div>
-                <div class="attributeComment">Parameter: Reservation Number</div>
+                <div class="attributeName">@confirmationNumber</div>
+                <div class="attributeComment">Parameter: Confirmation Number</div>
               </div>
             </div>
           </div>
           <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRental_Delete</h3>
-            <div class="comment"><p>SP to delete a specific record from the UHaulRental table.</p>
+            <h3>Relocation.usp_Relocation_UhaulInfo_Upsert</h3>
+            <div class="comment"><p>Sp to Update/Insert UhaulInfo</p>
 </div>
             <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalId</div>
-                <div class="attributeComment">Parameter: ID of record to delete</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRental_Insert</h3>
-            <div class="comment"><p>SP to Insert a record in the UhaulRental table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalId</div>
-                <div class="attributeComment">Parameter: UHaul Rental ID</div>
-              </div>
               <div class="attribute">
                 <div class="attributeName">@uhaulId</div>
-                <div class="attributeComment">Parameter: UHaul ID</div>
+                <div class="attributeComment">Parameter: UHaul ID - Optional (if present update record, else add new record)</div>
               </div>
               <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: UHaul Rental Type ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRental_Select_All</h3>
-            <div class="comment"><p>SP to Select All of the rows in the UHaulRental table</p>
-</div>
-            <div class="attributes"></div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRental_Select_One</h3>
-            <div class="comment"><p>SP to Select One of the rows in the UHaulRental table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalId</div>
-                <div class="attributeComment">Parameter: UHaul Rental ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRental_Update</h3>
-            <div class="comment"><p>SP to Update the data in a specific row in the UHaulRental table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalId</div>
-                <div class="attributeComment">Parameter: UHaul Rental ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@uhaulId</div>
-                <div class="attributeComment">Parameter: UHaul ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: UHaul Rental Type ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRentalTypeReference_Delete</h3>
-            <div class="comment"><p>SP to delete a specific record from the UHaulRentalTypeReference table.</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: ID of record to delete</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRentalTypeReference_Insert</h3>
-            <div class="comment"><p>SP to Insert a record in the UhaulRentalTypeReference table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@type</div>
-                <div class="attributeComment">Parameter: Type (Name)</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: UHaul Rental Type ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@moveTypeID</div>
-                <div class="attributeComment">Parameter: Move Type ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRentalTypeReference_Select_All</h3>
-            <div class="comment"><p>SP to Select All of the rows in the UHaulRentalTypeReference table</p>
-</div>
-            <div class="attributes"></div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRentalTypeReference_Select_One</h3>
-            <div class="comment"><p>SP to Select One of the rows in the UHaul Rental Type Reference table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: UHaul Rental Type ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="object">
-            <h3>Relocation.usp_Relocation_UhaulRentalTypeReference_Update</h3>
-            <div class="comment"><p>SP to Update the data in a specific row in the UHaulRentalTypeReference table</p>
-</div>
-            <div class="attributes">
-              <div class="attribute">
-                <div class="attributeName">@uhaulRentalTypeId</div>
-                <div class="attributeComment">Parameter: UHaul Rental Type ID</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@type</div>
-                <div class="attributeComment">Parameter: Type (Name)</div>
-              </div>
-              <div class="attribute">
-                <div class="attributeName">@moveTypeId</div>
-                <div class="attributeComment">Parameter: Move Type ID</div>
+                <div class="attributeName">@confirmationNumber</div>
+                <div class="attributeComment">Parameter: UHaul Confirmation Number</div>
               </div>
             </div>
           </div>
